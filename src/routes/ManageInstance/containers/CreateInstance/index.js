@@ -1,16 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CreateInstanceForm from "../../components/CreateInstanceForm";
+import { postData } from "utils/fetch";
 
 const CreateInstance = props => {
-    return (
-        <div>
+  const createInstance = (values, actions) => {
+    const data = { ...values, id: 2 };
+    const url =
+      "https://my-json-server.typicode.com/Vovannbc/crud-instance-example/instances";
+    console.log(values);
 
-        </div>
-    );
+    postData(url, data).then(res => console.log(res));
+  };
+  return (
+    <div>
+      <h1 style={{ textAlign: "center" }}>Create instance !</h1>
+      <CreateInstanceForm onSubmit={createInstance} initialValues={{}} />
+    </div>
+  );
 };
 
-CreateInstance.propTypes = {
-
-};
+CreateInstance.propTypes = {};
 
 export default CreateInstance;
