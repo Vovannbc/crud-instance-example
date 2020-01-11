@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import CreateInstanceForm from "../../components/CreateInstanceForm";
 import { postData } from "utils/fetch";
 
