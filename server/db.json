@@ -1,0 +1,61 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Post 1"
+    },
+    {
+      "id": 2,
+      "title": "Post 2"
+    },
+    {
+      "id": 3,
+      "title": "Post 3"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    },
+    {
+      "id": 2,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "instances": [
+    {
+      "id": 1,
+      "title": "Instance 1",
+      "description": "Instance 1 description",
+      "url": "http://www.google.com",
+      "image": "https://cdn.pixabay.com/photo/2019/12/03/07/34/gift-4669449_960_720.jpg"
+    },
+    {
+      "title": "1",
+      "description": "1",
+      "url": "1",
+      "image": "1",
+      "id": 2
+    },
+    {
+      "title": "123",
+      "description": "123",
+      "url": "123",
+      "image": "https://pixabay.com/get/52e7d3474e51a414f1dc8460825668204022dfe05458734975297ddd/forest-4764438_640.jpg",
+      "id": 1579200737688
+    },
+    {
+      "title": "sgfsgserg",
+      "description": "aergserg",
+      "url": "esrgserg",
+      "image": "esrgserthe",
+      "id": 1579200924011
+    }
+  ]
+}

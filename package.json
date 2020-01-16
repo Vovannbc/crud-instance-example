@@ -16,7 +16,7 @@
     "styled-components": "^4.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"node server/index.js\" \"react-scripts start\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -37,6 +37,7 @@
     ]
   },
   "devDependencies": {
+    "json-server": "^0.15.1",
     "prettier": "1.19.1"
   }
 }
