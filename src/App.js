@@ -1,10 +1,10 @@
 import React from "react";
-import { Router, Route, Switch } from "react-router";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import { CssBaseline } from "@material-ui/core";
 import styled from "styled-components";
+import { Navigation } from './components';
 import routes from "./routes";
-import Link from "@material-ui/core/Link";
 
 const AppContainer = styled.div`
   padding: 25px;
@@ -12,17 +12,15 @@ const AppContainer = styled.div`
 
 function App() {
   const history = createBrowserHistory();
+
   return (
     <React.Fragment>
       <CssBaseline />
       <AppContainer>
-        <nav>
-          <Link href="/manage" style={{ marginRight: 10 }}>Manage Route</Link>
-          <Link href="/display">Display Route</Link>
-        </nav>
+        <Navigation routes={routes} />
         <Router history={history}>
           <Switch>
-            {routes().map(route => (
+            {Object.values(routes).map(route => (
               <Route {...route} />
             ))}
           </Switch>

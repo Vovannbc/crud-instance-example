@@ -2,6 +2,7 @@ import React from "react";
 import CreateInstanceForm from "../../components/CreateInstanceForm";
 import { postData } from "utils/fetch";
 import { SERVER_URL } from "utils/constants";
+import icon from './counterStrike.svg';
 
 const CreateInstance = props => {
   const createInstance = (values, actions) => {
@@ -14,6 +15,7 @@ const CreateInstance = props => {
   return (
     <div>
       <h1 style={{ textAlign: "center" }}>Create instance !</h1>
+      <img src={icon} alt=""/>
       <CreateInstanceForm onSubmit={createInstance} initialValues={{}} />
     </div>
   );
