@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import firebase from 'firebase';
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
@@ -11,15 +12,29 @@ const Container = styled.div`
 
 const DisplayInstance = props => {
   const [instances, setInstances] = useState([]);
-  const getInstances = () => {
-    fetch("http://localhost:3001/instances")
-      .then(res => res.json())
-      .then(data => setInstances(data));
-  };
+  // const getInstances = () => {
+  //   fetch("http://localhost:3005/instances")
+  //     .then(res => res.json())
+  //     .then(data => setInstances(data));
+  // };
+
+  const db = firebase.firestore();
+
+  const getFirebaseInstances = () => {
+    // console.log(db.collection("instances").get().then());
+    db.collection("instances").get().then((querySnapshot) => {
+      console.log(querySnapshot)
+      // querySnapshot.forEach((doc) => {
+      //   console.log(`${doc.id} => ${doc.data()}`);
+      //   console.dir(doc);
+      // });
+    });
+  }
 
   useEffect(() => {
-    getInstances();
+    getFirebaseInstances();
   }, []);
+  console.log(instances);
   return (
     <Container>
       <ul>
