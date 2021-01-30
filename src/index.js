@@ -15,6 +15,9 @@ firebase.initializeApp({
   projectId: 'wishlist-d6ab9'
 });
 
+export const fireAuth = firebase.auth();
+export const firestore = firebase.firestore();
+
 ReactDOM.render(
     <App />,
   document.getElementById("root")

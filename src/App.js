@@ -1,15 +1,21 @@
 import React from "react";
-import { CssBaseline } from "@material-ui/core";
+import { createMuiTheme, CssBaseline } from "@material-ui/core";
+import { StylesProvider, ThemeProvider } from "@material-ui/core/styles";
 import { UserContextProvider } from "./providers";
 import AppContainer from "./application";
+import { themeColors } from "./theme";
 
-function App() {
-  return (
-    <UserContextProvider>
-      <CssBaseline />
-      <AppContainer />
-    </UserContextProvider>
-  );
-}
+const theme = createMuiTheme(themeColors);
+
+const App = () => (
+  <StylesProvider injectFirst={false}>
+    <ThemeProvider theme={theme}>
+      <UserContextProvider>
+        <CssBaseline />
+        <AppContainer />
+      </UserContextProvider>
+    </ThemeProvider>
+  </StylesProvider>
+);
 
 export default App;

@@ -1,36 +1,31 @@
 import NotFound from "./NotFound";
 import Manage from "./ManageInstance";
-import DisplayInstance from "./DisplayInstance";
-import Login from "./Login";
+import UserWishList from "./UserWishList";
 import AppRoutes from "./AppRoutes";
+import Home from "./Home";
 
 export const ROUTE_TYPES = {
+  HOME: 'home',
   MANAGE: 'manage',
-  DISPLAY: 'display',
+  USER_WISH_LIST: 'user-wish-list',
   LOGIN: 'login',
+  REGISTER: 'register',
+  AUTH: 'auth',
   NOTFOUND: 'notfound'
 };
 
 const routes = {
-  [ROUTE_TYPES.MANAGE]: {
-    key: "manage",
+  [ROUTE_TYPES.USER_WISH_LIST]: {
+    key: "list",
+    path: "/:uid",
+    opened: true,
+    component: UserWishList
+  },
+  [ROUTE_TYPES.HOME]: {
+    key: "home",
     path: "/",
-    component: Manage
-  },
-  [ROUTE_TYPES.MANAGE]: {
-    key: "manage",
-    path: "/manage",
-    component: Manage
-  },
-  [ROUTE_TYPES.DISPLAY]: {
-    key: "display",
-    path: "/display",
-    component: DisplayInstance
-  },
-  [ROUTE_TYPES.LOGIN]: {
-    key: "login",
-    path: "/login",
-    component: Login
+    opened: true,
+    component: Home
   },
   [ROUTE_TYPES.NOTFOUND]: {
     key: "notfound",
@@ -42,4 +37,4 @@ const routes = {
 
 export default routes;
 
-export { NotFound, DisplayInstance, Manage, AppRoutes };
+export { NotFound, UserWishList, Manage, AppRoutes };

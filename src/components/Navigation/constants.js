@@ -1,11 +1,17 @@
 import routes from '../../routes';
 
 export const NAVIGATION_TYPES = {
+  HOME: 'home',
   MANAGE: 'manage',
-  DISPLAY: 'display',
+  LIST: 'list',
+  AUTH: 'auth'
 };
 
 export const NAVIGATION_MAP = {
-  [NAVIGATION_TYPES.MANAGE]: routes[NAVIGATION_TYPES.MANAGE],
-  [NAVIGATION_TYPES.DISPLAY]: routes[NAVIGATION_TYPES.DISPLAY]
+  [NAVIGATION_TYPES.HOME]: routes[NAVIGATION_TYPES.HOME],
+  [NAVIGATION_TYPES.LIST]: routes[NAVIGATION_TYPES.LIST]
+};
+
+export const UNAUTHORIZED_NAVIGATION_MAP = {
+
 };
