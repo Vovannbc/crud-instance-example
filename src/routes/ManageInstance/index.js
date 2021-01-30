@@ -14,6 +14,8 @@ const useStyles = makeStyles({
 const ManagePage = props => {
   const classes = useStyles();
   const [openForm, setOpenForm] = useState(false);
+  const handleOpenForm = () => setOpenForm(true);
+  const handleCloseForm = () => setOpenForm(false);
 
   return (
     <div>
@@ -21,11 +23,11 @@ const ManagePage = props => {
       <SwipeableDrawer
         anchor="top"
         open={openForm}
-        onClose={() => setOpenForm(false)}
-        onOpen={() => setOpenForm(true)}
+        onClose={handleCloseForm}
+        onOpen={handleOpenForm}
       >
         <div className={classes.fullList} role="presentation">
-          <CreateInstance />
+          <CreateInstance closeForm={handleCloseForm} />
         </div>
       </SwipeableDrawer>
     </div>

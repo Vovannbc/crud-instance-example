@@ -17,6 +17,7 @@ firebase.initializeApp({
 
 export const fireAuth = firebase.auth();
 export const firestore = firebase.firestore();
+export const database = firebase.database();
 
 ReactDOM.render(
     <App />,

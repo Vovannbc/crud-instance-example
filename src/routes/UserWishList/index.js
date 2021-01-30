@@ -1,8 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import {UserContext} from "../../providers";
-import { firestore } from '../../index';
-import {Button} from "@material-ui/core";
+import { UserContext } from "../../providers";
+import { database } from "../../index";
 import ManagePage from "../ManageInstance";
 
 const Container = styled.div`
@@ -13,12 +12,22 @@ const Container = styled.div`
 
 const UserWishList = () => {
   const [instances, setInstances] = useState([]);
-  const { user: { uid } } = useContext(UserContext);
+  const {
+    user: { uid }
+  } = useContext(UserContext);
 
+  const docRef = database.ref("/instanses/" + uid);
 
-  const getFirebaseInstances = () => {
-
-  }
+  const getFirebaseInstances = async () => {
+    const value = [];
+    docRef.once("value", snapshot => {
+      console.log(snapshot);
+      snapshot.forEach(childSnapshot => {
+        value.push({ id: childSnapshot.key, ...childSnapshot.val() });
+      });
+      setInstances(value);
+    });
+  };
 
   useEffect(() => {
     getFirebaseInstances();
@@ -31,8 +40,8 @@ const UserWishList = () => {
       <ul>
         {instances.map(instance => (
           <li key={instance.id}>
-            <span>{instance.description}</span>
-            {instance.image.length && (
+            <span>{instance.title}</span>
+            {instance?.image?.length && (
               <img
                 src={instance.image}
                 alt={instance.title}

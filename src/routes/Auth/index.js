@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { AuthForm, TabPanel } from "../../components";
 import { UserContext } from "../../providers";
 import { AppBar } from "@material-ui/core";
-import {fireAuth} from "../../index";
+import { fireAuth } from "../../index";
 
 const StyledTab = styled(Tab)`
   color: #000;
@@ -56,11 +56,7 @@ const Auth = ({ closeAuth }) => {
   return (
     <Container>
       <AppBar position="static">
-        <Tabs
-          value={tab}
-          onChange={handleChangeTab}
-          aria-label="tabs"
-        >
+        <Tabs value={tab} onChange={handleChangeTab} aria-label="tabs">
           <StyledTab label="Login" />
           <StyledTab label="Register" />
         </Tabs>

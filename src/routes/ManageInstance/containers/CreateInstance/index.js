@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import CreateInstanceForm from "../../../../components/CreateInstanceForm";
-import { postData } from "utils/fetch";
-import { SERVER_URL } from "utils/constants";
+import { database } from "../../../../index";
+import { UserContext } from "../../../../providers";
 
-const CreateInstance = () => {
-  const createInstance = (values, actions) => {
-    const data = { ...values, id: Date.now() };
+const CreateInstance = ({ closeForm }) => {
+  const {
+    user: { uid }
+  } = useContext(UserContext);
 
-    // postData(url, data).then(res => console.log(res));
-  };
-
+  const createInstance = (values, actions) => database.ref('instanses/' + uid).push().set({
+          ...values
+      })
+        .then(() => console.log("Data successfully written!"))
+        .catch((error) => console.error("Error writing document: ", error))
+        .finally(closeForm);
 
   return (
     <div>
