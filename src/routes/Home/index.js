@@ -6,12 +6,8 @@ import { WelcomePage } from "../../components";
 
 const Container = styled.div`
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  flex: 1;
   padding: 20px;
-  text-align: center;
 `;
 
 const Home = () => {

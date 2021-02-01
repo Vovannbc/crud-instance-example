@@ -1,56 +1,51 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import { UserContext } from "../../providers";
-import { database } from "../../index";
+import { InstanceContext, UserContext } from "../../providers";
 import ManagePage from "../ManageInstance";
+import {List} from "./styles";
+import {Badge, Paper} from "@material-ui/core";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  flex: 1;
 `;
 
 const UserWishList = () => {
-  const [instances, setInstances] = useState([]);
   const {
     user: { uid }
   } = useContext(UserContext);
+  const [instanceState, instanceActions] = useContext(InstanceContext);
+  console.log(instanceState, instanceActions);
 
-  const docRef = database.ref("/instanses/" + uid);
-
-  const getFirebaseInstances = async () => {
-    const value = [];
-    docRef.once("value", snapshot => {
-      console.log(snapshot);
-      snapshot.forEach(childSnapshot => {
-        value.push({ id: childSnapshot.key, ...childSnapshot.val() });
-      });
-      setInstances(value);
-    });
-  };
+  const { FETCH_USER_INSTANCES } = instanceActions;
+  const { instances } = instanceState;
 
   useEffect(() => {
-    getFirebaseInstances();
+    FETCH_USER_INSTANCES(uid);
   }, []);
   console.log(instances);
 
   return (
     <Container>
       <ManagePage />
-      <ul>
-        {instances.map(instance => (
+      <List>
+        {Object.values(instances).map((instance, index) => (
           <li key={instance.id}>
-            <span>{instance.title}</span>
-            {instance?.image?.length && (
-              <img
-                src={instance.image}
-                alt={instance.title}
-                style={{ width: 50, height: 50 }}
-              />
-            )}
+            <Paper elevation={3} style={{ margin: 20 }}>
+              <span>{instance.title}</span>
+              {instance?.image?.length && (
+                <img
+                  src={instance.image}
+                  alt={instance.title}
+                  style={{ width: 50, height: 50 }}
+                />
+              )}
+            </Paper>
           </li>
         ))}
-      </ul>
+      </List>
       <p>Above will be list of instances</p>
     </Container>
   );

@@ -14,7 +14,6 @@ const NavContainer = styled.nav`
 `;
 
 const Navigation = ({ routes }) => {
-  console.log(routes);
   const {
     user: { uid }
   } = useContext(UserContext);
