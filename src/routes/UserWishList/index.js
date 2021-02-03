@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from "react";
-import styled from "styled-components";
-import { InstanceContext, UserContext } from "../../providers";
-import ManagePage from "../ManageInstance";
-import {List} from "./styles";
-import {Badge, Paper} from "@material-ui/core";
+import React, { useContext, useEffect } from 'react';
+import styled from 'styled-components';
+import { InstanceContext, UserContext } from '../../providers';
+import ManagePage from '../ManageInstance';
+import { List } from './styles';
+import { Card } from '@material-ui/core';
 
 const Container = styled.div`
   display: flex;
@@ -12,28 +12,30 @@ const Container = styled.div`
   flex: 1;
 `;
 
+const PaperItem = styled(Card)`
+  margin: 0 20px 20px 20px;
+`;
+
 const UserWishList = () => {
   const {
     user: { uid }
   } = useContext(UserContext);
   const [instanceState, instanceActions] = useContext(InstanceContext);
-  console.log(instanceState, instanceActions);
 
   const { FETCH_USER_INSTANCES } = instanceActions;
   const { instances } = instanceState;
 
   useEffect(() => {
     FETCH_USER_INSTANCES(uid);
-  }, []);
+  }, [uid]);
   console.log(instances);
 
   return (
     <Container>
-      <ManagePage />
       <List>
-        {Object.values(instances).map((instance, index) => (
+        {Object.values(instances).map((instance) => (
           <li key={instance.id}>
-            <Paper elevation={3} style={{ margin: 20 }}>
+            <PaperItem elevation={1}>
               <span>{instance.title}</span>
               {instance?.image?.length && (
                 <img
@@ -42,11 +44,11 @@ const UserWishList = () => {
                   style={{ width: 50, height: 50 }}
                 />
               )}
-            </Paper>
+            </PaperItem>
           </li>
         ))}
       </List>
-      <p>Above will be list of instances</p>
+      <ManagePage />
     </Container>
   );
 };

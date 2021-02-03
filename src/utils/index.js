@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo } from 'react';
 
 export const combineReducers = (handlers = {}, customHandlers = {}) => {
   const mergedHandlers = { ...handlers, ...customHandlers };
@@ -14,8 +14,8 @@ export const combineReducers = (handlers = {}, customHandlers = {}) => {
   };
 };
 
-const applyMiddleware = (dispatch) => action => {
-  if (typeof action === "function") {
+const applyMiddleware = (dispatch) => (action) => {
+  if (typeof action === 'function') {
     return action(dispatch);
   }
 
@@ -27,24 +27,19 @@ const getActionCreators = (actionCreators, dispatch) =>
     (memo, [type, action]) => ({
       ...memo,
       [type]:
-        typeof action === "function"
+        typeof action === 'function'
           ? dispatch(action)
-          : payload => dispatch({ type, payload })
+          : (payload) => dispatch({ type, payload })
     }),
     {}
   );
 
-export const useActions = (
-  types,
-  dispatch,
-  customActionCreators = {}
-) => {
+export const useActions = (types, dispatch, customActionCreators = {}) => {
   const enhancedDispatch = applyMiddleware(dispatch);
   const actionCreators = { ...types, ...customActionCreators };
 
   return useMemo(() => getActionCreators(actionCreators, enhancedDispatch), [
-    types,
-    customActionCreators
+    actionCreators,
+    enhancedDispatch
   ]);
 };
-

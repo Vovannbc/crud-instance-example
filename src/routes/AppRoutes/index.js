@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
-import routes, { ROUTE_TYPES } from "../index";
-import { Route, Switch, Redirect } from "react-router-dom";
-import { UserContext } from "../../providers";
+import React, { useContext } from 'react';
+import routes, { ROUTE_TYPES } from '../index';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { UserContext } from '../../providers';
 
 const PrivateRoute = ({ component: Component, isAuthorised, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
+    render={(props) =>
       isAuthorised ? (
         <Component {...props} />
       ) : (
         <Redirect
           to={{
-            pathname: "/auth",
+            pathname: '/auth',
             state: { from: props.location }
           }}
         />
@@ -28,7 +28,7 @@ const AppRoutes = () => {
 
   return (
     <Switch>
-      {Object.values(routes).map(route => (
+      {Object.values(routes).map((route) => (
         <Route {...route} />
       ))}
       <PrivateRoute

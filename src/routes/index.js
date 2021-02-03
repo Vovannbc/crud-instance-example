@@ -1,8 +1,8 @@
-import NotFound from "./NotFound";
-import Manage from "./ManageInstance";
-import UserWishList from "./UserWishList";
-import AppRoutes from "./AppRoutes";
-import Home from "./Home";
+import NotFound from './NotFound';
+import Manage from './ManageInstance';
+import UserWishList from './UserWishList';
+import AppRoutes from './AppRoutes';
+import Home from './Home';
 
 export const ROUTE_TYPES = {
   HOME: 'home',
@@ -16,21 +16,21 @@ export const ROUTE_TYPES = {
 
 const routes = {
   [ROUTE_TYPES.USER_WISH_LIST]: {
-    key: "list",
-    path: "/:uid",
+    key: 'list',
+    path: '/:uid',
     opened: true,
     component: UserWishList
   },
   [ROUTE_TYPES.HOME]: {
-    key: "home",
-    path: "/",
+    key: 'home',
+    path: '/',
     opened: true,
     component: Home
   },
   [ROUTE_TYPES.NOTFOUND]: {
-    key: "notfound",
-    path: "*",
-    name: "notfound",
+    key: 'notfound',
+    path: '*',
+    name: 'notfound',
     component: NotFound
   }
 };

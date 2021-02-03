@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Container from "@material-ui/core/Container";
-import styled from "styled-components";
-import { AuthForm, TabPanel } from "../../components";
-import { UserContext } from "../../providers";
-import { AppBar } from "@material-ui/core";
-import { fireAuth } from "../../index";
+import React, { useContext } from 'react';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Container from '@material-ui/core/Container';
+import styled from 'styled-components';
+import { AuthForm, TabPanel } from '../../components';
+import { UserContext } from '../../providers';
+import { AppBar } from '@material-ui/core';
+import { fireAuth } from '../../index';
 
 const StyledTab = styled(Tab)`
   color: #000;
@@ -24,7 +24,7 @@ const Auth = ({ closeAuth }) => {
     setSubmitting(true);
     fireAuth
       .signInWithEmailAndPassword(email, password)
-      .then(res => {
+      .then((res) => {
         if (res) setUser({ ...user });
       })
       .catch(console.error)
@@ -40,7 +40,7 @@ const Auth = ({ closeAuth }) => {
     setSubmitting(true);
     fireAuth
       .createUserWithEmailAndPassword(email, password)
-      .then(res => {
+      .then((res) => {
         if (res) {
           setUser(res);
         }

@@ -1,5 +1,5 @@
-import React from "react";
-import Box from "@material-ui/core/Box";
+import React from 'react';
+import Box from '@material-ui/core/Box';
 
 export const TabPanel = ({ children, value, index, ...other }) => {
   return (
@@ -17,4 +17,4 @@ export const TabPanel = ({ children, value, index, ...other }) => {
       )}
     </div>
   );
-}
+};

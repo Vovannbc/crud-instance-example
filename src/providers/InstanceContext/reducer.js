@@ -10,9 +10,9 @@ export const types = {
 export const reducers = {
   [types.SET_INSTANCES]: (state, instances) => {
     console.log(instances);
-    return ({
+    return {
       ...state,
       instances
-    })
-  },
+    };
+  }
 };

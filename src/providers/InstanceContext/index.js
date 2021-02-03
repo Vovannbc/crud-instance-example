@@ -1,7 +1,7 @@
-import React, { createContext, useMemo, useReducer } from "react";
-import { combineReducers, useActions } from "../../utils";
-import { types, reducers, initialState } from "./reducer";
-import { actions as actionCreators } from "./actions";
+import React, { createContext, useMemo, useReducer } from 'react';
+import { combineReducers, useActions } from '../../utils';
+import { types, reducers, initialState } from './reducer';
+import { actions as actionCreators } from './actions';
 
 export const InstanceContext = createContext();
 

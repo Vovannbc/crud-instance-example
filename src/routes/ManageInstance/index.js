@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import { Button, makeStyles, SwipeableDrawer } from "@material-ui/core";
-import CreateInstance from "./containers/CreateInstance";
+import React, { useState } from 'react';
+import { Button, makeStyles, SwipeableDrawer } from '@material-ui/core';
+import CreateInstance from './containers/CreateInstance';
 
 const useStyles = makeStyles({
   list: {
     width: 250
   },
   fullList: {
-    width: "auto"
+    width: 'auto'
   }
 });
 
-const ManagePage = props => {
+const ManagePage = () => {
   const classes = useStyles();
   const [openForm, setOpenForm] = useState(false);
   const handleOpenForm = () => setOpenForm(true);

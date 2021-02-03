@@ -12,6 +12,4 @@ export const NAVIGATION_MAP = {
   [NAVIGATION_TYPES.LIST]: routes[NAVIGATION_TYPES.LIST]
 };
 
-export const UNAUTHORIZED_NAVIGATION_MAP = {
-
-};
+export const UNAUTHORIZED_NAVIGATION_MAP = {};
