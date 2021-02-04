@@ -1,36 +1,31 @@
 import React, { useState } from 'react';
-import { Button, makeStyles, SwipeableDrawer } from '@material-ui/core';
+import styled from 'styled-components';
+import { Button, SwipeableDrawer } from '@material-ui/core';
 import CreateInstance from './containers/CreateInstance';
 
-const useStyles = makeStyles({
-  list: {
-    width: 250
-  },
-  fullList: {
-    width: 'auto'
-  }
-});
+const CreateInstanceContainer = styled.div`
+  width: auto;
+`;
 
 const ManagePage = () => {
-  const classes = useStyles();
   const [openForm, setOpenForm] = useState(false);
   const handleOpenForm = () => setOpenForm(true);
   const handleCloseForm = () => setOpenForm(false);
 
   return (
-    <div>
-      <Button onClick={() => setOpenForm(true)}>Create Instance</Button>
+    <>
+      <Button variant="outlined" onClick={() => setOpenForm(true)}>Create Instance</Button>
       <SwipeableDrawer
         anchor="top"
         open={openForm}
         onClose={handleCloseForm}
         onOpen={handleOpenForm}
       >
-        <div className={classes.fullList} role="presentation">
+        <CreateInstanceContainer role="presentation">
           <CreateInstance closeForm={handleCloseForm} />
-        </div>
+        </CreateInstanceContainer>
       </SwipeableDrawer>
-    </div>
+    </>
   );
 };
 

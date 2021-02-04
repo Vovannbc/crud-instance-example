@@ -1,7 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { InstanceContext, UserContext } from '../../providers';
 import ManagePage from '../ManageInstance';
-import { Container, List, PaperItem, PaperItemImage, PaperItemTitle, PaperItemDescription } from './styles';
+import {
+  Container,
+  List,
+  PaperItem,
+  PaperItemImage,
+  PaperItemTitle,
+  PaperItemDescription
+} from './styles';
 import Button from '@material-ui/core/Button';
 
 const UserWishList = () => {
@@ -21,21 +28,25 @@ const UserWishList = () => {
   return (
     <Container>
       <List>
-        {Object.values(instances).map((instance) => (
-          <li key={instance.id}>
+        {Object.values(instances).map(({id, title, description, url, image}) => (
+          <li key={id}>
             <PaperItem elevation={1}>
               <div>
-                <PaperItemTitle>{instance.title}</PaperItemTitle>
-                <PaperItemDescription>{instance.description}</PaperItemDescription>
-                <Button variant="contained" color="primary" href={instance.url} target='_blank'>
+                <PaperItemTitle>{title}</PaperItemTitle>
+                <PaperItemDescription>
+                  {description}
+                </PaperItemDescription>
+                {url && <Button
+                  variant="contained"
+                  color="primary"
+                  href={url}
+                  target="_blank"
+                >
                   Open shop
-                </Button>
+                </Button>}
               </div>
-              {instance?.image?.length && (
-                <PaperItemImage
-                  src={instance.image}
-                  alt={instance.title}
-                />
+              {image?.length && (
+                <PaperItemImage src={image} alt={title} />
               )}
             </PaperItem>
           </li>

@@ -8,13 +8,6 @@ const FormStyled = styled.form`
   display: flex;
   flex-flow: row wrap;
   padding: 25px;
-  .MuiTextField-root {
-    margin: 10px;
-    width: calc(50% - 20px);
-  }
-  .MuiButtonBase-root {
-    width: 100%;
-  }
 `;
 
 const CreateInstanceForm = ({ onSubmit, initialValues = {} }) => {
