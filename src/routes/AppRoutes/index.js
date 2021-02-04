@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import routes, { ROUTE_TYPES } from '../index';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { UserContext } from '../../providers';
+import { LinearProgress } from '@material-ui/core';
 
 const PrivateRoute = ({ component: Component, isAuthorised, ...rest }) => (
   <Route
@@ -23,8 +24,13 @@ const PrivateRoute = ({ component: Component, isAuthorised, ...rest }) => (
 
 const AppRoutes = () => {
   const {
-    user: { isAuthorised }
+    user: { isAuthorised }, loading
   } = useContext(UserContext);
+  console.log(loading);
+
+  if (loading) {
+    return <LinearProgress />
+  }
 
   return (
     <Switch>

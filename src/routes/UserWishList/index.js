@@ -1,20 +1,8 @@
 import React, { useContext, useEffect } from 'react';
-import styled from 'styled-components';
 import { InstanceContext, UserContext } from '../../providers';
 import ManagePage from '../ManageInstance';
-import { List } from './styles';
-import { Card } from '@material-ui/core';
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex: 1;
-`;
-
-const PaperItem = styled(Card)`
-  margin: 0 20px 20px 20px;
-`;
+import { Container, List, PaperItem, PaperItemImage, PaperItemTitle, PaperItemDescription } from './styles';
+import Button from '@material-ui/core/Button';
 
 const UserWishList = () => {
   const {
@@ -36,12 +24,17 @@ const UserWishList = () => {
         {Object.values(instances).map((instance) => (
           <li key={instance.id}>
             <PaperItem elevation={1}>
-              <span>{instance.title}</span>
+              <div>
+                <PaperItemTitle>{instance.title}</PaperItemTitle>
+                <PaperItemDescription>{instance.description}</PaperItemDescription>
+                <Button variant="contained" color="primary" href={instance.url} target='_blank'>
+                  Open shop
+                </Button>
+              </div>
               {instance?.image?.length && (
-                <img
+                <PaperItemImage
                   src={instance.image}
                   alt={instance.title}
-                  style={{ width: 50, height: 50 }}
                 />
               )}
             </PaperItem>

@@ -5,19 +5,26 @@ export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
+  window.onload = () => setLoading(true);
 
   useEffect(() => {
     fireAuth.onAuthStateChanged((userAuth) => {
-      if (userAuth) setUser({ ...userAuth });
+      if (userAuth) {
+        setUser({ ...userAuth });
+        setLoading(false);
+      }
     });
   }, []);
 
   const value = useMemo(
     () => ({
       user,
-      setUser
+      setUser,
+      loading,
+      setLoading
     }),
-    [user, setUser]
+    [user, setUser, loading]
   );
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
