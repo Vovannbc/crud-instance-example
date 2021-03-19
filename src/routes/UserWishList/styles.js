@@ -4,7 +4,7 @@ import { Card, List as MaterialList } from '@material-ui/core';
 export const List = styled(MaterialList)`
   list-style: none;
   flex: 1;
-  width: 500px;
+  max-width: 500px;
 `;
 
 export const Container = styled.div`
@@ -12,7 +12,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  background-color: ${({ theme }) => theme.primary.main};
+  background-color: ${({ theme }) => theme.primary.light};
 `;
 
 export const PaperItem = styled(Card)`

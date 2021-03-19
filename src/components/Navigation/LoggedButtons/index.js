@@ -9,6 +9,13 @@ const Container = styled.div`
   display: inline-flex;
 `;
 
+const StyledButton = styled(Button)`
+  background-color: ${({ theme }) => theme.primary.main};
+  :hover {
+    background-color: ${({ theme }) => theme.secondary.main};
+  }
+`;
+
 const LoggedButtons = ({ openAuthForm }) => {
   const { push } = useHistory();
   const {
@@ -28,11 +35,11 @@ const LoggedButtons = ({ openAuthForm }) => {
 
   return isAuthorised ? (
     <Container>
-      <Button>Profile</Button>
-      <Button onClick={signOut}>Logged out</Button>
+      <StyledButton>Profile</StyledButton>
+      <StyledButton onClick={signOut}>Logged out</StyledButton>
     </Container>
   ) : (
-    <Button onClick={openAuthForm}>Auth</Button>
+    <StyledButton onClick={openAuthForm}>Auth</StyledButton>
   );
 };
 

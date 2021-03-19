@@ -1,15 +1,19 @@
 export const themeColors = {
   // from here https://material-ui.com/ru/customization/color/
   primary: {
-    light: '#67b7f7',
-    main: '#42a5f5',
-    dark: '#2e73ab',
-    contrastText: '#000'
+    light: '#51b7ae',
+    main: '#26a69a',
+    dark: '#1a746b',
+    contrastText: '#fff',
+    border: '#c6c6c6',
+    background: '#dddddd'
   },
   secondary: {
-    light: '#c786d3',
-    main: '#ba68c8',
-    dark: '#82488c',
-    contrastText: '#fff'
+    light: '#ffac33',
+    main: '#ff9800',
+    dark: '#b26a00',
+    contrastText: '#000',
+    border: '#c6c6c6',
+    background: '#dddddd'
   }
 };

@@ -10,6 +10,8 @@ const NavContainer = styled(Toolbar)`
   align-items: center;
   width: 100%;
   background-color: ${({ theme }) => theme.primary.main};
+  // border-bottom: 1px solid ${({ theme }) => theme.primary.contrastText};
+  border-bottom: 1px solid ${({ theme }) => theme.primary.border};
 `;
 
 const Navigation = () => {
