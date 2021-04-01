@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import CreateInstanceForm from '../../../../components/CreateInstanceForm';
 import { database } from '../../../../index';
-import { UserContext } from '../../../../providers';
+import { InstanceContext, UserContext } from '../../../../providers';
 
 const CreateInstance = ({ closeForm }) => {
   const {
     user: { uid }
   } = useContext(UserContext);
+  const [, { FETCH_USER_INSTANCES }] = useContext(InstanceContext);
 
   const createInstance = (values, actions) =>
     database
@@ -17,7 +18,10 @@ const CreateInstance = ({ closeForm }) => {
       })
       .then(() => console.log('Data successfully written!'))
       .catch((error) => console.error('Error writing document: ', error))
-      .finally(closeForm);
+      .finally(() => {
+        closeForm();
+        FETCH_USER_INSTANCES(uid);
+      });
 
   return (
     <div>

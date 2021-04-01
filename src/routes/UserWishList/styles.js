@@ -12,11 +12,11 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
-  background-color: ${({ theme }) => theme.primary.light};
+  background-color: ${({ theme }) => theme.primary.background};
 `;
 
 export const PaperItem = styled(Card)`
-  margin: 0 20px 20px 20px;
+  margin: 20px;
   padding: 10px;
   display: flex;
 `;

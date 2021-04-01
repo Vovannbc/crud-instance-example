@@ -12,7 +12,7 @@ const Container = styled.div`
 const StyledButton = styled(Button)`
   background-color: ${({ theme }) => theme.primary.main};
   :hover {
-    background-color: ${({ theme }) => theme.secondary.main};
+    background-color: ${({ theme }) => theme.primary.light};
   }
 `;
 

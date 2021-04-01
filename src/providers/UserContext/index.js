@@ -12,8 +12,8 @@ export const UserContextProvider = ({ children }) => {
     fireAuth.onAuthStateChanged((userAuth) => {
       if (userAuth) {
         setUser({ ...userAuth });
-        setLoading(false);
       }
+      setLoading(false);
     });
   }, []);
 

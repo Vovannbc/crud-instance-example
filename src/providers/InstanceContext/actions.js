@@ -7,7 +7,6 @@ export const actions = {
     let value = {};
     docRef.once('value', (snapshot) => {
       snapshot.forEach((childSnapshot) => {
-        console.log(childSnapshot);
         value = {
           ...value,
           [childSnapshot.key]: { id: childSnapshot.key, ...childSnapshot.val() }
@@ -15,5 +14,18 @@ export const actions = {
       });
       dispatch({ type: types.SET_INSTANCES, payload: value });
     });
+  },
+  [types.SET_DONE_USER_INSTANCES]: (dispatch) => (uid) => {
+    const docRef = database.ref('/instanses/' + uid);
+    let value = {};
+    // docRef.once('value', (snapshot) => {
+    //   snapshot.forEach((childSnapshot) => {
+    //     value = {
+    //       ...value,
+    //       [childSnapshot.key]: { id: childSnapshot.key, ...childSnapshot.val() }
+    //     };
+    //   });
+    //   dispatch({ type: types.SET_INSTANCES, payload: value });
+    // });
   }
 };

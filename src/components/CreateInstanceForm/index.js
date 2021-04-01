@@ -2,12 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
-import { TextField, Button, Container } from '@material-ui/core';
+import { TextField, Container } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import { SubmitButton } from '../../common';
 
 const FormStyled = styled.form`
   display: flex;
   flex-flow: row wrap;
-  padding: 25px;
+`;
+
+const TextFieldStyled = styled(TextField)`
+  width: 50%;
+  :nth-child(odd) {
+    padding-right: 10px;
+  }
+  :nth-child(even) {
+    padding-left: 10px;
+  }
 `;
 
 const CreateInstanceForm = ({ onSubmit, initialValues = {} }) => {
@@ -23,41 +34,41 @@ const CreateInstanceForm = ({ onSubmit, initialValues = {} }) => {
   });
   return (
     <Container maxWidth="sm">
-      <FormStyled onSubmit={handleSubmit}>
-        <TextField
-          onChange={handleChange}
-          id="title"
-          placeholder="title"
-          value={values.title}
-        />
-        <TextField
-          onChange={handleChange}
-          id="description"
-          placeholder="description"
-          value={values.description}
-        />
-        <TextField
-          onChange={handleChange}
-          id="url"
-          placeholder="url"
-          value={values.url}
-        />
-        <TextField
-          onChange={handleChange}
-          id="image"
-          placeholder="image"
-          value={values.image}
-        />
-        <TextField
-          onChange={handleChange}
-          id="price"
-          placeholder="price"
-          value={values.price}
-        />
-        <Button variant="contained" color="primary" type="submit">
-          Create instance
-        </Button>
-      </FormStyled>
+      <Box p={2.5}>
+        <FormStyled onSubmit={handleSubmit}>
+          <TextFieldStyled
+            onChange={handleChange}
+            id="title"
+            label="title"
+            value={values.title}
+          />
+          <TextFieldStyled
+            onChange={handleChange}
+            id="description"
+            label="description"
+            value={values.description}
+          />
+          <TextFieldStyled
+            onChange={handleChange}
+            id="url"
+            label="url"
+            value={values.url}
+          />
+          <TextFieldStyled
+            onChange={handleChange}
+            id="image"
+            label="image"
+            value={values.image}
+          />
+          <TextFieldStyled
+            onChange={handleChange}
+            id="price"
+            label="price"
+            value={values.price}
+          />
+          <SubmitButton fullWidth>Create instance</SubmitButton>
+        </FormStyled>
+      </Box>
     </Container>
   );
 };
