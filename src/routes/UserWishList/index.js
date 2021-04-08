@@ -7,35 +7,50 @@ import {
   PaperItem,
   PaperItemImage,
   PaperItemTitle,
-  PaperItemDescription
+  PaperItemDescription,
+  CloseButtonStyled
 } from './styles';
 import Box from '@material-ui/core/Box';
-import { ButtonStyled } from '../../common';
 import Checkbox from '@material-ui/core/Checkbox';
+import { ButtonStyled } from '../../common';
+import { useHistory } from 'react-router-dom';
 
 const UserWishList = () => {
   const {
     user: { uid }
   } = useContext(UserContext);
   const [{ instances }, instanceActions] = useContext(InstanceContext);
+  const history = useHistory();
+  const pathname = history.location.pathname;
+  const externalUserId = pathname.replace('/', '');
 
-  const { FETCH_USER_INSTANCES } = instanceActions;
+  const { FETCH_INSTANCES, UPDATE_INSTANCE, DELETE_INSTANCE } = instanceActions;
+  const fetchId = externalUserId || uid;
+  const externalList = Boolean(externalUserId);
 
   useEffect(() => {
-    FETCH_USER_INSTANCES(uid);
-  }, [uid]);
+    FETCH_INSTANCES(fetchId);
+  }, [fetchId]);
 
   const items = Object.values(instances);
-  console.log(instances);
 
-  const handleChange = () => {};
+  const handleDone = async (item, checked) => {
+    await UPDATE_INSTANCE(item, uid, { checked });
+    FETCH_INSTANCES(uid);
+  };
+
+  const handleDelete = async (e, id) => {
+    e.preventDefault();
+    await DELETE_INSTANCE(uid, id);
+    FETCH_INSTANCES(uid);
+  };
 
   return (
     <Container>
       <List>
         {!items.length && <Box>There are no any items in this list!</Box>}
-        {items.map(
-          ({
+        {items.map((item) => {
+          const {
             id,
             title,
             description,
@@ -43,9 +58,10 @@ const UserWishList = () => {
             image,
             price = '',
             checked = false
-          }) => (
+          } = item;
+          return (
             <li key={id}>
-              <PaperItem elevation={1}>
+              <PaperItem elevation={1} checked={checked}>
                 <Box
                   display="flex"
                   justifyContent="space-between"
@@ -67,18 +83,30 @@ const UserWishList = () => {
                         Open shop
                       </ButtonStyled>
                     )}
-                    <Checkbox
-                      checked={checked}
-                      onChange={handleChange}
-                      inputProps={{ 'aria-label': 'primary checkbox' }}
-                    />
+                    {!externalList && (
+                      <Checkbox
+                        checked={checked}
+                        onChange={(e) => handleDone(item, e.target.checked)}
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                      />
+                    )}
                   </Box>
-                  {image?.length && <PaperItemImage src={image} alt={title} />}
+                  {image?.length && ( // todo need to align image correctly
+                    <Box width="50%" margin="20px 0 0">
+                      <PaperItemImage src={image} alt={title} />
+                    </Box>
+                  )}
                 </Box>
+                {!externalList && (
+                  <CloseButtonStyled
+                    fontSize="small"
+                    onClick={(e) => handleDelete(e, id)}
+                  />
+                )}
               </PaperItem>
             </li>
-          )
-        )}
+          );
+        })}
       </List>
       <ManagePage />
     </Container>

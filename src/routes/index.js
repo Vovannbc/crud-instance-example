@@ -15,17 +15,17 @@ export const ROUTE_TYPES = {
 };
 
 const routes = {
-  [ROUTE_TYPES.USER_WISH_LIST]: {
-    key: 'list',
-    path: '/:uid',
-    opened: true,
-    component: UserWishList
-  },
   [ROUTE_TYPES.HOME]: {
     key: 'home',
     path: '/',
     opened: true,
     component: Home
+  },
+  [ROUTE_TYPES.USER_WISH_LIST]: {
+    key: 'list',
+    path: '/:uid',
+    opened: true,
+    component: UserWishList
   },
   [ROUTE_TYPES.NOTFOUND]: {
     key: 'notfound',

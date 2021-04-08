@@ -8,7 +8,6 @@ export const combineReducers = (handlers = {}, customHandlers = {}) => {
         ? mergedHandlers[type](state, payload)
         : state;
     } catch (e) {
-      console.log(e, { type });
       return state;
     }
   };
