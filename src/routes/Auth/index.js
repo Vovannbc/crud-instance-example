@@ -26,12 +26,15 @@ const Auth = ({ closeAuth }) => {
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
         if (res) setUser({ ...user });
+        alert(`Congratulations! ${email}, you are logged in successfully!`);
       })
-      .catch(console.error)
+      .catch((e) => {
+        console.error(e);
+        alert(`Something went wrong! ${e}`);
+      })
       .finally(() => {
         setSubmitting(false);
         closeAuth();
-        alert(`Congratulations! ${email}, you are logged in successfully!`);
       });
   };
 
@@ -41,15 +44,16 @@ const Auth = ({ closeAuth }) => {
     fireAuth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        if (res) {
-          setUser(res);
-        }
+        if (res) setUser(res);
+        alert(`Congratulations! ${email}, you are logged in successfully!`);
       })
-      .catch(console.error)
+      .catch((e) => {
+        console.error(e);
+        alert(`Something went wrong! ${e}`);
+      })
       .finally(() => {
         setSubmitting(false);
         closeAuth();
-        alert(`Congratulations! ${email}, you are registered successfully!`);
       });
   };
 

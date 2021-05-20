@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button, SwipeableDrawer } from '@material-ui/core';
-import CreateInstance from './containers/CreateInstance';
+import CreateInstance from './CreateInstance';
 
 const CreateInstanceContainer = styled.div`
   width: auto;

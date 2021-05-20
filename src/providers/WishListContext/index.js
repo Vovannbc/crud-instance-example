@@ -3,17 +3,17 @@ import { combineReducers, useActions } from '../../utils';
 import { types, reducers, initialState } from './reducer';
 import { actions as actionCreators } from './actions';
 
-export const InstanceContext = createContext();
+export const WishListContext = createContext();
 
-export const InstanceContextProvider = ({ children }) => {
+export const WishListContextProvider = ({ children }) => {
   const memoReducers = useMemo(() => combineReducers(reducers), []);
   const [state, dispatch] = useReducer(memoReducers, initialState);
 
   const actions = useActions(types, dispatch, actionCreators);
 
   return (
-    <InstanceContext.Provider value={[state, actions]}>
+    <WishListContext.Provider value={[state, actions]}>
       {children}
-    </InstanceContext.Provider>
+    </WishListContext.Provider>
   );
 };

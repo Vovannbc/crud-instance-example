@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { InstanceContext, UserContext } from '../../providers';
+import { WishListContext, UserContext } from '../../providers';
 import ManagePage from '../ManageInstance';
 import {
   Container,
@@ -15,20 +15,19 @@ const UserWishList = () => {
   const {
     user: { uid }
   } = useContext(UserContext);
-  const [instanceState, instanceActions] = useContext(InstanceContext);
+  const [wishListState, wishListActions] = useContext(WishListContext);
 
-  const { FETCH_USER_INSTANCES } = instanceActions;
-  const { instances } = instanceState;
+  const { FETCH_USER_LIST } = wishListActions;
+  const { list } = wishListState;
 
   useEffect(() => {
-    FETCH_USER_INSTANCES(uid);
+    FETCH_USER_LIST(uid);
   }, [uid]);
-  console.log(instances);
 
   return (
     <Container>
       <List>
-        {Object.values(instances).map(({id, title, description, url, image}) => (
+        {Object.values(list).map(({id, title, description, url, image}) => (
           <li key={id}>
             <PaperItem elevation={1}>
               <div>

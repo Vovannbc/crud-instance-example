@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useFormik } from 'formik';
 import { TextField, Button, Container } from '@material-ui/core';
@@ -10,7 +10,7 @@ const FormStyled = styled.form`
   padding: 25px;
 `;
 
-const CreateInstanceForm = ({ onSubmit, initialValues = {} }) => {
+const CreateWishItemForm = ({ onSubmit, initialValues = {} }) => {
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
       title: initialValues.title || '',
@@ -62,9 +62,9 @@ const CreateInstanceForm = ({ onSubmit, initialValues = {} }) => {
   );
 };
 
-CreateInstanceForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  initialValues: PropTypes.object
-};
+// CreateWishItemForm.propTypes = {
+//   onSubmit: PropTypes.func.isRequired,
+//   initialValues: PropTypes.object
+// };
 
-export default CreateInstanceForm;
+export default CreateWishItemForm;

@@ -1,2 +1,2 @@
 export { UserContext, UserContextProvider } from './UserContext';
-export { InstanceContext, InstanceContextProvider } from './InstanceContext';
+export { WishListContext, WishListContextProvider } from './WishListContext';
