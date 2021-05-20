@@ -24,12 +24,12 @@ const PrivateRoute = ({ component: Component, isAuthorised, ...rest }) => (
 
 const AppRoutes = () => {
   const {
-    user: { isAuthorised }, loading
+    user: { isAuthorised },
+    loading
   } = useContext(UserContext);
-  console.log(loading);
 
   if (loading) {
-    return <LinearProgress />
+    return <LinearProgress />;
   }
 
   return (

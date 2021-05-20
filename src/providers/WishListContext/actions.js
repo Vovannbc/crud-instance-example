@@ -14,5 +14,17 @@ export const actions = {
       });
       dispatch({ type: types.SET_LIST, payload: value });
     });
+  },
+  [types.UPDATE_USER_LIST]: (dispatch) => async (item, uid, data) => {
+    const itemData = {
+      ...item,
+      ...data
+    };
+    const updates = {};
+    updates[`/instanses/${uid}/${item.id}`] = itemData;
+    return database.ref().update(updates);
+  },
+  [types.DELETE_USER_WISH_ITEM]: (dispatch) => (uid, id) => {
+    database.ref(`/instanses/${uid}/${id}`).remove();
   }
 };

@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { CreateWishItemForm } from '../../../components';
 import { database } from '../../../index';
-import { UserContext } from '../../../providers';
+import { WishListContext, UserContext } from '../../../providers';
 
 const CreateInstance = ({ closeForm }) => {
   const {
     user: { uid }
   } = useContext(UserContext);
+  const [, { FETCH_INSTANCES }] = useContext(WishListContext);
 
   const createInstance = (values, actions) =>
     database
@@ -17,7 +18,10 @@ const CreateInstance = ({ closeForm }) => {
       })
       .then(() => console.log('Data successfully written!'))
       .catch((error) => console.error('Error writing document: ', error))
-      .finally(closeForm);
+      .finally(() => {
+        closeForm();
+        FETCH_INSTANCES(uid);
+      });
 
   return (
     <div>

@@ -1,6 +1,10 @@
 import React from 'react';
+import { hot } from 'react-hot-loader/root';
 import { createMuiTheme, CssBaseline } from '@material-ui/core';
-import { StylesProvider } from '@material-ui/core/styles';
+import {
+  StylesProvider,
+  ThemeProvider as MaterialThemeProvider
+} from '@material-ui/core/styles';
 import { UserContextProvider, WishListContextProvider } from './providers';
 import AppContainer from './application';
 import { themeColors } from './theme';
@@ -11,14 +15,16 @@ const theme = createMuiTheme(themeColors);
 const App = () => (
   <ThemeProvider theme={theme}>
     <StylesProvider injectFirst={true}>
-      <UserContextProvider>
-        <WishListContextProvider>
-          <CssBaseline />
-          <AppContainer />
-        </WishListContextProvider>
-      </UserContextProvider>
+      <MaterialThemeProvider theme={theme}>
+        <UserContextProvider>
+          <WishListContextProvider>
+            <CssBaseline />
+            <AppContainer />
+          </WishListContextProvider>
+        </UserContextProvider>
+      </MaterialThemeProvider>
     </StylesProvider>
   </ThemeProvider>
 );
 
-export default App;
+export default process.env.NODE_ENV === 'development' ? hot(App) : App;
