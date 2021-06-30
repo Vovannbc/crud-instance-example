@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { InstanceContext, UserContext } from '../../providers';
 import ManagePage from '../ManageInstance';
 import {
@@ -28,9 +28,7 @@ const UserWishList = () => {
   const fetchId = externalUserId || uid;
   const externalList = Boolean(externalUserId);
 
-  useEffect(() => {
-    FETCH_INSTANCES(fetchId);
-  }, [fetchId]);
+  useEffect(() => FETCH_INSTANCES(fetchId), [fetchId]);
 
   const items = Object.values(instances);
 
@@ -39,11 +37,14 @@ const UserWishList = () => {
     FETCH_INSTANCES(uid);
   };
 
-  const handleDelete = async (e, id) => {
-    e.preventDefault();
-    await DELETE_INSTANCE(uid, id);
-    FETCH_INSTANCES(uid);
-  };
+  const handleDelete = useCallback(
+    async (e, id) => {
+      e.preventDefault();
+      await DELETE_INSTANCE(uid, id);
+      FETCH_INSTANCES(uid);
+    },
+    [uid]
+  );
 
   return (
     <Container>

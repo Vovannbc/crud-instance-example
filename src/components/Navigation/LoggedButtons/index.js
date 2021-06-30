@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { fireAuth } from '../../../index';
 import styled from 'styled-components';
 import { UserContext } from '../../../providers';
@@ -10,6 +10,13 @@ const Container = styled.div`
 `;
 
 const StyledButton = styled(Button)`
+  background-color: ${({ theme }) => theme.primary.main};
+  :hover {
+    background-color: ${({ theme }) => theme.primary.light};
+  }
+`;
+
+const StyledLink = styled(Link)`
   background-color: ${({ theme }) => theme.primary.main};
   :hover {
     background-color: ${({ theme }) => theme.primary.light};
@@ -35,7 +42,7 @@ const LoggedButtons = ({ openAuthForm }) => {
 
   return isAuthorised ? (
     <Container>
-      <StyledButton>Profile</StyledButton>
+      {/*<StyledLink to="/profile">Profile</StyledLink>*/}
       <StyledButton onClick={signOut}>Logged out</StyledButton>
     </Container>
   ) : (
