@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Card, List as MaterialList } from '@material-ui/core';
-import { CloseButton } from '../../common';
+import { CloseButton, EditButton } from '../../common';
 
 export const List = styled(MaterialList)`
   list-style: none;
@@ -47,6 +47,14 @@ export const PaperItemDescription = styled.div`
 export const CloseButtonStyled = styled(CloseButton)`
   position: absolute;
   right: 0;
+  top: 0;
+  padding: 5px;
+  font-size: 1em;
+`;
+
+export const EditButtonStyled = styled(EditButton)`
+  position: absolute;
+  right: 20px;
   top: 0;
   padding: 5px;
   font-size: 1em;

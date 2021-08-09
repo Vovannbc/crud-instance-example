@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { IconButton, SwipeableDrawer } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import CreateInstance from './CreateInstance';
+import CreateItem from './CreateItem';
 
 const CreateInstanceContainer = styled.div`
   width: auto;
@@ -26,7 +26,7 @@ const ManagePage = () => {
 
   return (
     <>
-      <StyledButton variant="outlined" onClick={() => setOpenForm(true)}>
+      <StyledButton variant="outlined" onClick={handleOpenForm}>
         <AddCircleOutlineIcon htmlColor={theme.primary.contrastText} />
       </StyledButton>
       <SwipeableDrawer
@@ -36,7 +36,7 @@ const ManagePage = () => {
         onOpen={handleOpenForm}
       >
         <CreateInstanceContainer role="presentation">
-          <CreateInstance closeForm={handleCloseForm} />
+          <CreateItem closeForm={handleCloseForm} />
         </CreateInstanceContainer>
       </SwipeableDrawer>
     </>

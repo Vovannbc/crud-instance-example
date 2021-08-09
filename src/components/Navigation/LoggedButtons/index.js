@@ -1,19 +1,12 @@
 import React, { useContext } from 'react';
-import { Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { fireAuth } from '../../../index';
 import styled from 'styled-components';
 import { UserContext } from '../../../providers';
+import { ButtonStyled } from '../../../common';
 
 const Container = styled.div`
   display: inline-flex;
-`;
-
-const StyledButton = styled(Button)`
-  background-color: ${({ theme }) => theme.primary.main};
-  :hover {
-    background-color: ${({ theme }) => theme.primary.light};
-  }
 `;
 
 const LoggedButtons = ({ openAuthForm }) => {
@@ -28,18 +21,16 @@ const LoggedButtons = ({ openAuthForm }) => {
       .signOut()
       .then(() => setUser({}))
       .catch(console.error)
-      .finally(() => {
-        push('/');
-      });
+      .finally(() => push('/'));
   };
 
   return isAuthorised ? (
     <Container>
-      <StyledButton>Profile</StyledButton>
-      <StyledButton onClick={signOut}>Logged out</StyledButton>
+      <Link to="/">My List</Link>
+      <ButtonStyled onClick={signOut}>Logged out</ButtonStyled>
     </Container>
   ) : (
-    <StyledButton onClick={openAuthForm}>Auth</StyledButton>
+    <ButtonStyled onClick={openAuthForm}>Auth</ButtonStyled>
   );
 };
 

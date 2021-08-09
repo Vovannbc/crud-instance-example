@@ -3,7 +3,7 @@ import { CreateWishItemForm } from '../../../components';
 import { database } from '../../../index';
 import { WishListContext, UserContext } from '../../../providers';
 
-const CreateInstance = ({ closeForm }) => {
+const CreateItem = ({ closeForm }) => {
   const {
     user: { uid }
   } = useContext(UserContext);
@@ -25,10 +25,10 @@ const CreateInstance = ({ closeForm }) => {
 
   return (
     <div>
-      <h1 style={{ textAlign: 'center' }}>Create instance !</h1>
+      <h1 style={{ textAlign: 'center' }}>Add to wish list!</h1>
       <CreateWishItemForm onSubmit={createInstance} initialValues={{}} />
     </div>
   );
 };
 
-export default CreateInstance;
+export default CreateItem;

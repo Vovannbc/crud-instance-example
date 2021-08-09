@@ -1,2 +1,7 @@
-export { SubmitButton, ButtonStyled } from './SubmitButton';
-export { CloseButton } from './CloseButton';
+export {
+  SubmitButton,
+  ButtonStyled,
+  LinkStyled,
+  CloseButton,
+  EditButton
+} from './Buttons';

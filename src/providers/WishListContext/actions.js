@@ -15,7 +15,8 @@ export const actions = {
       dispatch({ type: types.SET_LIST, payload: value });
     });
   },
-  [types.UPDATE_USER_LIST]: (dispatch) => async (item, uid, data) => {
+
+  [types.UPDATE_USER_LIST]: (dispatch) => (item, uid, data) => {
     const itemData = {
       ...item,
       ...data

@@ -66,7 +66,9 @@ const CreateWishItemForm = ({ onSubmit, initialValues = {} }) => {
             label="price"
             value={values.price}
           />
-          <SubmitButton fullWidth>Create instance</SubmitButton>
+          <SubmitButton style={{ marginTop: 10 }} fullWidth>
+            Save
+          </SubmitButton>
         </FormStyled>
       </Box>
     </Container>
