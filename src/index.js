@@ -5,18 +5,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import firebase from 'firebase';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import { getDatabase } from 'firebase/database';
 
 // Initialize Cloud Firestore through Firebase
-firebase.initializeApp({
+export const firebaseApp = firebase.initializeApp({
   apiKey: 'AIzaSyAY01K8E-TU5bod4GTL0crouuHOva4-pi0',
   authDomain: 'wishlist-d6ab9.firebaseapp.com',
   projectId: 'wishlist-d6ab9'
 });
 
-export const fireAuth = firebase.auth();
-export const firestore = firebase.firestore();
-export const database = firebase.database();
+// export const firestore = firebase.default.firestore();
+export const database = getDatabase(firebaseApp);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

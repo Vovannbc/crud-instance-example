@@ -4,5 +4,6 @@
   "tabWidth": 2,
   "trailingComma":"none",
   "semi": true,
-  "arrowParens": "always"
+  "arrowParens": "always",
+  "editor.formatOnSave": true
 }

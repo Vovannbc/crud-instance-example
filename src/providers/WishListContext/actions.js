@@ -1,31 +1,32 @@
 import { types } from './reducer';
-import { database } from '../../index';
+import { getDatabase, ref, remove } from 'firebase/database';
+import {
+  databaseTypes,
+  readItemsByType,
+  // readItemsByTypeOnce,
+  updateItemByType
+} from '../../database';
 
 export const actions = {
-  [types.FETCH_USER_LIST]: (dispatch) => (uid) => {
-    const docRef = database.ref('/instanses/' + uid);
-    let value = {};
-    docRef.once('value', (snapshot) => {
-      snapshot.forEach((childSnapshot) => {
-        value = {
-          ...value,
-          [childSnapshot.key]: { id: childSnapshot.key, ...childSnapshot.val() }
-        };
-      });
-      dispatch({ type: types.SET_LIST, payload: value });
-    });
+  [types.FETCH_USER_LIST]: (dispatch) => async (uid) => {
+    readItemsByType(databaseTypes.instances, uid, dispatch);
+    // console.log(value);
+    // dispatch({ type: types.SET_LIST, payload: value });
   },
 
-  [types.UPDATE_USER_LIST]: (dispatch) => (item, uid, data) => {
+  [types.UPDATE_USER_LIST]: (dispatch) => async (item, uid, data) => {
     const itemData = {
       ...item,
       ...data
     };
-    const updates = {};
-    updates[`/instanses/${uid}/${item.id}`] = itemData;
-    return database.ref().update(updates);
+
+    await updateItemByType(databaseTypes.instances, uid, itemData);
+    dispatch({ type: types.FETCH_USER_LIST, payload: uid });
   },
   [types.DELETE_USER_WISH_ITEM]: (dispatch) => (uid, id) => {
-    database.ref(`/instanses/${uid}/${id}`).remove();
+    const database = getDatabase();
+
+    remove(ref(database, `/instanses/${uid}/${id}`));
+    dispatch({ type: types.FETCH_USER_LIST, payload: uid });
   }
 };

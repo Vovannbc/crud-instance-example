@@ -1,32 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { CreateWishItemForm } from '../../../components';
-import { database } from '../../../index';
-import { WishListContext, UserContext } from '../../../providers';
+import { useDatabase } from '../../../hooks/useDatabase';
 
 const CreateItem = ({ closeForm }) => {
-  const {
-    user: { uid }
-  } = useContext(UserContext);
-  const [, { FETCH_INSTANCES }] = useContext(WishListContext);
+  const { createNewUserWishItem } = useDatabase();
 
-  const createInstance = (values, actions) =>
-    database
-      .ref('instanses/' + uid)
-      .push()
-      .set({
-        ...values
-      })
-      .then(() => console.log('Data successfully written!'))
-      .catch((error) => console.error('Error writing document: ', error))
-      .finally(() => {
-        closeForm();
-        FETCH_INSTANCES(uid);
-      });
+  const createItem = (values) => {
+    createNewUserWishItem(values, () => {
+      closeForm();
+    });
+  };
 
   return (
     <div>
       <h1 style={{ textAlign: 'center' }}>Add to wish list!</h1>
-      <CreateWishItemForm onSubmit={createInstance} initialValues={{}} />
+      <CreateWishItemForm onSubmit={createItem} initialValues={{}} />
     </div>
   );
 };

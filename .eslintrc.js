@@ -6,7 +6,7 @@ module.exports = {
     node: true,
     es6: true
   },
-  parser: 'babel-eslint',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
     ecmaFeatures: {
@@ -14,7 +14,13 @@ module.exports = {
       modules: true
     }
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier'
+  ],
   plugins: ['prettier', 'react-hooks'],
   rules: {
     'prettier/prettier': ['error'],

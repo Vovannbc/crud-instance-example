@@ -1,17 +1,16 @@
-import React from 'react';
+import * as React from 'react';
 import { Navigation } from '../components';
-import { AppRoutes } from '../routes';
-import { Router } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import routes from '../routes';
+import { useRoutes } from 'react-router-dom';
 
 const AppContainer = () => {
-  const history = createBrowserHistory();
+  const appRoutes = useRoutes(routes);
 
   return (
-    <Router history={history}>
+    <>
       <Navigation />
-      <AppRoutes />
-    </Router>
+      {appRoutes}
+    </>
   );
 };
 

@@ -14,17 +14,15 @@ import {
 import Box from '@material-ui/core/Box';
 import Checkbox from '@material-ui/core/Checkbox';
 import { ButtonStyled } from '../../common';
-import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const UserWishList = () => {
   const {
     user: { uid }
   } = useContext(UserContext);
   const [wishListState, wishListActions] = useContext(WishListContext);
-  const history = useHistory();
-  const pathname = history.location.pathname;
-  const externalUserId = pathname.replace('/', '');
-  console.log(wishListState);
+  const location = useLocation();
+  const externalUserId = location.pathname.replace('/', '');
   const { FETCH_USER_LIST, UPDATE_USER_LIST, DELETE_USER_WISH_ITEM } =
     wishListActions;
   const { list } = wishListState;
@@ -35,24 +33,19 @@ const UserWishList = () => {
     FETCH_USER_LIST(fetchId);
   }, [fetchId]);
 
-  const items = Object.values(list);
-  console.log(useContext(WishListContext));
+  const items = Object.entries(list);
 
   const handleDone = useCallback(
-    async (item, checked) => {
-      await UPDATE_USER_LIST(item, uid, { checked });
-      FETCH_USER_LIST(uid);
-    },
+    (item, checked) => UPDATE_USER_LIST(item, uid, { checked }),
     [uid]
   );
 
-  const handleDelete = async (e, id) => {
+  const handleDelete = (e, id) => {
     e.preventDefault();
-    await DELETE_USER_WISH_ITEM(uid, id);
-    FETCH_USER_LIST(uid);
+    DELETE_USER_WISH_ITEM(uid, id);
   };
 
-  const handleEdit = (e, item) => {
+  const handleEdit = (e) => {
     e.preventDefault();
   };
 
@@ -60,9 +53,8 @@ const UserWishList = () => {
     <Container>
       <List>
         {items.length ? (
-          items.map((item) => {
+          items.map(([key, item]) => {
             const {
-              id,
               title,
               description,
               url,
@@ -71,7 +63,7 @@ const UserWishList = () => {
               checked = false
             } = item;
             return (
-              <li key={id}>
+              <li key={key}>
                 <PaperItem elevation={1} checked={checked}>
                   <Box
                     display="flex"
@@ -118,7 +110,7 @@ const UserWishList = () => {
                       />
                       <CloseButtonStyled
                         fontSize="small"
-                        onClick={(e) => handleDelete(e, id)}
+                        onClick={(e) => handleDelete(e, key)}
                       />
                     </Box>
                   )}

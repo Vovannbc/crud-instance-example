@@ -1,9 +1,9 @@
+import * as React from 'react';
 import NotFound from './NotFound';
-import Manage from './ManageInstance';
 import UserWishList from './UserWishList';
-import AppRoutes from './AppRoutes';
 import Home from './Home';
 import Profile from './Profile';
+import WelcomePage from '../components/WelcomePage';
 
 export const ROUTE_TYPES = {
   HOME: 'HOME',
@@ -16,33 +16,37 @@ export const ROUTE_TYPES = {
   NOTFOUND: 'NOTFOUND'
 };
 
-const routes = {
-  [ROUTE_TYPES.PROFILE]: {
-    key: 'profile',
+const routes = [
+  {
     path: '/profile',
     opened: true,
-    component: Profile
+    element: <Profile />
   },
-  [ROUTE_TYPES.USER_WISH_LIST]: {
-    key: 'list',
+  {
     path: '/:uid',
     opened: true,
-    component: UserWishList
+    element: <UserWishList />
   },
-  [ROUTE_TYPES.HOME]: {
-    key: 'home',
+  {
     path: '/',
     opened: true,
-    component: Home
+    element: <Home />,
+    children: [
+      {
+        path: '/list',
+        element: <UserWishList />
+      },
+      {
+        path: '/welcome',
+        element: <WelcomePage />
+      }
+    ]
   },
-  [ROUTE_TYPES.NOTFOUND]: {
-    key: 'notfound',
+  {
     path: '*',
     name: 'notfound',
-    component: NotFound
+    element: <NotFound />
   }
-};
+];
 
 export default routes;
-
-export { NotFound, UserWishList, Manage, AppRoutes };

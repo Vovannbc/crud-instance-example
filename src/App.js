@@ -1,6 +1,6 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
-import { createMuiTheme, CssBaseline } from '@material-ui/core';
+import { createTheme, CssBaseline } from '@material-ui/core';
 import {
   StylesProvider,
   ThemeProvider as MaterialThemeProvider
@@ -9,8 +9,9 @@ import { UserContextProvider, WishListContextProvider } from './providers';
 import AppContainer from './application';
 import { themeColors } from './theme';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
 
-const theme = createMuiTheme(themeColors);
+const theme = createTheme(themeColors);
 
 const App = () => (
   <ThemeProvider theme={theme}>
@@ -19,7 +20,9 @@ const App = () => (
         <UserContextProvider>
           <WishListContextProvider>
             <CssBaseline />
-            <AppContainer />
+            <BrowserRouter>
+              <AppContainer />
+            </BrowserRouter>
           </WishListContextProvider>
         </UserContextProvider>
       </MaterialThemeProvider>

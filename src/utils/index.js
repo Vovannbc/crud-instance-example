@@ -37,8 +37,8 @@ export const useActions = (types, dispatch, customActionCreators = {}) => {
   const enhancedDispatch = applyMiddleware(dispatch);
   const actionCreators = { ...types, ...customActionCreators };
 
-  return useMemo(() => getActionCreators(actionCreators, enhancedDispatch), [
-    actionCreators,
-    enhancedDispatch
-  ]);
+  return useMemo(
+    () => getActionCreators(actionCreators, enhancedDispatch),
+    [actionCreators, enhancedDispatch]
+  );
 };

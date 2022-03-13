@@ -1,23 +1,31 @@
-import React, { createContext, useEffect, useMemo, useState } from 'react';
-import { fireAuth } from '../../index';
+import * as React from 'react';
+import firebase from 'firebase/compat/app';
 
-export const UserContext = createContext();
+export const UserContext = React.createContext({});
 
 export const UserContextProvider = ({ children }) => {
-  const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [user, setUser] = React.useState({});
+  const [loading, setLoading] = React.useState(false);
   window.onload = () => setLoading(true);
 
-  useEffect(() => {
-    fireAuth.onAuthStateChanged((userAuth) => {
+  React.useEffect(() => {
+    firebase.auth().onAuthStateChanged((userAuth) => {
       if (userAuth) {
-        setUser({ ...userAuth });
+        const { uid, displayName, phoneNumber, email, emailVerified } =
+          userAuth;
+        setUser({
+          displayName,
+          email,
+          emailVerified,
+          phoneNumber,
+          uid
+        });
       }
       setLoading(false);
     });
   }, []);
 
-  const value = useMemo(
+  const value = React.useMemo(
     () => ({
       user,
       setUser,
